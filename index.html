@@ -1,0 +1,218 @@
+import React, { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
+
+const HomePage = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <div className="bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-900 min-h-screen text-white flex">
+      {/* Sidebar */}
+      <div>
+        <motion.button
+          className="fixed top-4 right-4 z-50 bg-gray-800 text-gray-200 p-2 rounded-md hover:bg-gray-700"
+          onClick={() => setMenuOpen(!menuOpen)}
+          initial={{ scale: 1 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <span className="block w-6 h-1 bg-white mb-1"></span>
+          <span className="block w-6 h-1 bg-white mb-1"></span>
+          <span className="block w-6 h-1 bg-white"></span>
+        </motion.button>
+        <motion.nav
+          className="fixed top-0 right-0 h-full bg-gray-800 text-gray-200 flex flex-col items-center py-8 shadow-lg z-40"
+          style={{ width: "250px" }}
+          initial={{ x: "100%" }}
+          animate={{ x: menuOpen ? "0%" : "100%" }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        >
+          <h2 className="text-2xl font-bold mb-8">Navigation</h2>
+          <ul className="space-y-4">
+            <li>
+              <a href="#home" className="hover:text-white" onClick={() => setMenuOpen(false)}>
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="#products" className="hover:text-white" onClick={() => setMenuOpen(false)}>
+                Products
+              </a>
+            </li>
+            <li>
+              <a href="#support" className="hover:text-white" onClick={() => setMenuOpen(false)}>
+                Support
+              </a>
+            </li>
+          </ul>
+        </motion.nav>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col items-center px-4 py-10">
+        <header id="home" className="text-center mb-12">
+          <motion.h1
+            className="text-4xl md:text-6xl font-bold mb-4"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Welcome to [Your Bot Name] Server
+          </motion.h1>
+          <motion.p
+            className="text-lg md:text-xl text-gray-400"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Your one-stop destination for managing your Discord bot
+          </motion.p>
+        </header>
+
+        <main className="grid gap-8 md:grid-cols-2 max-w-4xl w-full">
+          <Card className="bg-gray-800 shadow-lg">
+            <CardContent className="p-6">
+              <h2 className="text-2xl font-semibold mb-4">Features</h2>
+              <ul className="list-disc pl-6 space-y-2 text-gray-300">
+                <li>Custom commands</li>
+                <li>24/7 uptime</li>
+                <li>Role management</li>
+                <li>Fun & Utility commands</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gray-800 shadow-lg">
+            <CardContent className="p-6">
+              <h2 className="text-2xl font-semibold mb-4">Join Us</h2>
+              <p className="text-gray-300 mb-4">
+                Be part of the community and start using our bot today!
+              </p>
+              <Button className="w-full bg-blue-600 hover:bg-blue-700 flex items-center justify-center">
+                <MessageCircle className="mr-2" />
+                Join Discord Server
+              </Button>
+            </CardContent>
+          </Card>
+        </main>
+
+        <section id="products" className="mt-12 max-w-4xl w-full">
+          <h2 className="text-3xl font-bold mb-6 text-center">Our Products</h2>
+          <div className="grid gap-8 md:grid-cols-2">
+            <Card className="bg-gray-800 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-semibold mb-4">Ticket Bot</h3>
+                <p className="text-gray-300 mb-4">
+                  A powerful bot to manage tickets, ensuring seamless support for your community.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="bg-gray-800 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-semibold mb-4">Vouch Bot</h3>
+                <p className="text-gray-300 mb-4">
+                  Collect and display user vouches, boosting trust within your server.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="bg-gray-800 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-semibold mb-4">Moderation Bot</h3>
+                <p className="text-gray-300 mb-4">
+                  A bot designed to keep your server safe with advanced moderation tools.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="bg-gray-800 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-semibold mb-4">Status Rotator</h3>
+                <p className="text-gray-300 mb-4">
+                  Automatically rotate custom statuses to keep your server fresh and engaging.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <section id="support" className="mt-12 max-w-4xl w-full">
+          <h2 className="text-3xl font-bold mb-6 text-center">Purchase Our Bots</h2>
+          <div className="grid gap-8 md:grid-cols-2">
+            <Card className="bg-gray-800 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-semibold mb-4">Buy Ticket Bot</h3>
+                <p className="text-gray-300 mb-4">
+                  Streamline support with the Ticket Bot. Click below to purchase via Sellix.
+                </p>
+                <Button
+                  as="a"
+                  href="https://sellix.io/ticketbot"
+                  target="_blank"
+                  className="w-full bg-green-600 hover:bg-green-700"
+                >
+                  Purchase Ticket Bot
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="bg-gray-800 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-semibold mb-4">Buy Vouch Bot</h3>
+                <p className="text-gray-300 mb-4">
+                  Enhance trust with the Vouch Bot. Click below to purchase via Sellix.
+                </p>
+                <Button
+                  as="a"
+                  href="https://sellix.io/vouchbot"
+                  target="_blank"
+                  className="w-full bg-green-600 hover:bg-green-700"
+                >
+                  Purchase Vouch Bot
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="bg-gray-800 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-semibold mb-4">Buy Moderation Bot</h3>
+                <p className="text-gray-300 mb-4">
+                  Keep your server safe with the Moderation Bot. Click below to purchase via Sellix.
+                </p>
+                <Button
+                  as="a"
+                  href="https://sellix.io/moderationbot"
+                  target="_blank"
+                  className="w-full bg-green-600 hover:bg-green-700"
+                >
+                  Purchase Moderation Bot
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="bg-gray-800 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-semibold mb-4">Buy Status Rotator</h3>
+                <p className="text-gray-300 mb-4">
+                  Keep statuses fresh with the Status Rotator. Click below to purchase via Sellix.
+                </p>
+                <Button
+                  as="a"
+                  href="https://sellix.io/statusrotator"
+                  target="_blank"
+                  className="w-full bg-green-600 hover:bg-green-700"
+                >
+                  Purchase Status Rotator
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <footer className="mt-16 text-gray-500 text-center">
+          <p>&copy; 2025 [Your Bot Name]. All Rights Reserved.</p>
+        </footer>
+      </div>
+    </div>
+  );
+};
+
+export default HomePage;
